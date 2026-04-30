@@ -1,325 +1,604 @@
-﻿<!doctype html>
-<html class="no-js" lang="en">
-
+<!doctype html>
+<html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Dungeon Legend</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- all css here -->
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/font-awesome.min.css">
-<link rel="stylesheet" href="assets/css/magnific-popup.css">
-<link rel="stylesheet" href="assets/css/slicknav.min.css">
-<link rel="stylesheet" href="assets/css/swiper.min.css">
-<link rel="stylesheet" href="assets/css/typography.css">
-<link rel="stylesheet" href="assets/css/default-css.css">
-<link rel="stylesheet" href="assets/css/styles.css">
-<link rel="stylesheet" href="assets/css/responsive.css">
-<!-- modernizr css -->
-<script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>修仙地牢传说 — Xiuxian Dungeon Legend</title>
+<meta name="description" content="三人小队的副本竞速。修仙地牢传说，由独立小队远程协作开发。" />
+<meta property="og:title" content="修仙地牢传说" />
+<meta property="og:description" content="九境登仙路 · 试玩版倒计时开门" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600&family=Noto+Serif+SC:wght@500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: { 950: "#08080a", 900: "#0b0b0d", 850: "#0e0e11", 800: "#101013", 700: "#16161a", 600: "#1c1c1f", 500: "#1f1f23", 400: "#27272a" },
+          jade: { 50: "#f5efde", 100: "#e7d9b3", 300: "#c8a667", 500: "#a08c5e", 700: "#7a6438", 900: "#2a251a", 950: "#1a1612" },
+          fog:  { 100: "#ededec", 200: "#cccac4", 300: "#a3a3a0", 400: "#7e7e7a", 500: "#5d5d5a" },
+          good: "#7fb98a",
+          seal: "#1c1810",
+          sponsor: "#0e0c08",
+        },
+        fontFamily: {
+          serif: ['"Noto Serif SC"', "serif"],
+          sans:  ['"Noto Sans SC"', '"Geist"', "system-ui", "sans-serif"],
+          dispEn: ['"Geist"', "system-ui", "sans-serif"],
+          mono:  ['"JetBrains Mono"', "ui-monospace", "monospace"],
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  html, body { background: #0b0b0d; color: #ededec; }
+  * { -webkit-font-smoothing: antialiased; }
+
+  /* Marquee */
+  @keyframes marquee {
+    from { transform: translate3d(0,0,0); }
+    to   { transform: translate3d(-50%,0,0); }
+  }
+  .marquee-track { animation: marquee 38s linear infinite; }
+
+  /* Subtle press feedback */
+  .press:active { transform: translateY(1px); }
+
+  /* Grain noise overlay (fixed, pointer-events-none — never on scrolling containers) */
+  .grain::after {
+    content: ""; position: fixed; inset: 0; z-index: 60; pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mix-blend-mode: overlay; opacity: 0.4;
+  }
+
+  /* Hero image gradient overlay so image edges fade into bg */
+  .hero-fade {
+    background:
+      linear-gradient(180deg, rgba(11,11,13,0) 0%, rgba(11,11,13,0) 55%, rgba(11,11,13,0.9) 100%),
+      linear-gradient(135deg, rgba(11,11,13,0) 60%, rgba(11,11,13,0.7) 100%);
+  }
+
+  /* QR data dot */
+  .qr-d { background: #1c1810; position: absolute; }
+
+  /* Mesh gradient for sponsor backdrop */
+  .mesh-amber {
+    background:
+      radial-gradient(60% 50% at 80% 20%, rgba(200,166,103,0.06), transparent 60%),
+      radial-gradient(70% 60% at 10% 80%, rgba(200,166,103,0.04), transparent 60%);
+  }
+
+  /* Hide scrollbar in marquee */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+</style>
 </head>
 
-<body>
-<!--[if lt IE 8]>
-		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-	<![endif]-->
-<!-- preloader area start -->
-<!---<div id="preloader">
-	<div class="loader"></div>
-</div>--->
-<!-- prealoader area end -->
-<!-- header area start -->
-<header>
-	<div class="header-area tpheader-two">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-3">
-					<div class="logo">
-						<a href="index.html">
-							<img src="assets/images/icon/logo-white.png" alt="logo">
-						</a>
-					</div>
-				</div>
-				<div class="col-lg-9 d-none d-lg-block">
-					<div class="main-menu">
-						<nav id="nav_mobile_menu">
-							<ul id="navigation">
-								<li class="active">
-									<a href="#home">Home</a>
-								</li>
-								<li>
-									<a href="#about">About</a>
-								</li>
-								<li>
-									<a href="#video">Video</a>
-								</li>
-								<li>
-									<a href="#blog">Blog</a>
-								</li>
-								<li>
-									<a href="#price">Pricing Plan</a>
-								</li>
-							</ul>
-						</nav>
-					</div>
-				</div>
-				<div class="col-12 d-block d-lg-none">
-					<div id="mobile_menu"></div>
-				</div>
-			</div>
-		</div>
-	</div>
+<body class="font-sans grain">
+
+<!-- ============================ NAV ============================ -->
+<header class="sticky top-0 z-40 backdrop-blur-md bg-ink-900/80 border-b border-ink-600">
+  <nav class="mx-auto max-w-[1400px] flex items-center justify-between gap-6 px-6 md:px-10 h-[72px]">
+    <a href="#" class="flex items-center gap-3">
+      <span class="grid place-items-center w-9 h-9 rounded-lg bg-jade-950 ring-1 ring-jade-300/40 font-serif font-semibold text-jade-300 text-[18px]">修</span>
+      <span class="font-medium text-fog-100 tracking-tight text-[16px]">修仙地牢传说</span>
+    </a>
+
+    <ul class="hidden md:flex items-center gap-9 text-[13px] tracking-wide text-fog-300">
+      <li><a href="#world" class="hover:text-fog-100 transition">世界</a></li>
+      <li><a href="#features" class="hover:text-fog-100 transition">玩法</a></li>
+      <li><a href="#countdown" class="hover:text-fog-100 transition">试玩</a></li>
+      <li><a href="#sponsor" class="text-jade-300 hover:text-jade-50 transition">赞助</a></li>
+    </ul>
+
+    <div class="flex items-center gap-3">
+      <div class="hidden sm:flex items-center gap-2 px-3 py-[6px] rounded-full bg-ink-700 border border-ink-400">
+        <span class="block w-[7px] h-[7px] rounded-full bg-good"></span>
+        <span class="font-mono text-[11px] text-fog-200">测试服 · 在线 1,247</span>
+      </div>
+      <a href="#countdown" class="press inline-flex items-center gap-2 rounded-lg bg-fog-100 text-ink-900 px-4 py-[10px] text-[13px] font-semibold transition hover:bg-white">
+        加入测试
+      </a>
+    </div>
+  </nav>
 </header>
-<!-- header area end -->
-<!-- hero area start -->
-<section class="game-hero-area full-height d-flex align-items-center" id="home">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-10 offset-md-1 text-center pos-rel">
-				<div class="hero-content">
-					<h2>Dungeon Legend</h2>
-					<span>The Games World</span>
-				</div>
-			</div>
-		</div>
-	</div>
-	<a href="#about" class="scrl_me_down">
-		<img src="assets/images/icon/angle-down-icon.png" alt="icon">
-	</a>
-</section>
-<!-- hero area end -->
-<!-- about area start -->
-<section class="abt3-area ptb--100" id="about">
-	<div class="container">
-		<div class="row align-items-center">
-			<div class="col-lg-7">
-				<div class="abt3-content">
-					<span>Trainer Video</span>
-					<h2>Now we have come full circle</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus eos id at, nostrum saepe ex
-						sint harum ipsam ipsum distinctio sequi? Aperiam qui ipsam autem facere tempore mollitia eos
-						magni culpa, non, esse quas, necessitatibus deserunt accusantium? Ut maiores excepturi, mollitia
-						molestiae illo aspernatur. Enim quibusdam iure distinctio omnis magnam!</p>
-				</div>
-			</div>
-			<div class="col-lg-4 offset-lg-1 d-none d-lg-block">
-				<div class="abt3-right-thumb">
-					<img src="assets/images/about/abt3-right-thumb.png" alt="image">
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- about area end -->
-<!-- about area start -->
-<section class="trailer-video ptb--100" id="video">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-10 offset-md-1">
-				<div class="gm-title">
-					<span>Trainer Video</span>
-					<h2>Now we have come full circle</h2>
-					<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea aliquam natus voluptates, sit voluptate
-						quaerat voluptatibus ducimus sequi dignissimos exercitationem!</p>
-				</div>
-				<div class="video-area">
-					<a class="expand-video" href="">
-						<i class="fa fa-play"></i>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- about area end -->
-<!-- facts area start -->
-<div class="game-satisfaction bg-black ptb--100">
-	<div class="container">
-		<div class="gm-title">
-			<span>Warrior</span>
-			<h2>Game Satisfaction</h2>
-			<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea aliquam natus voluptates, sit voluptate quaerat
-				voluptatibus ducimus sequi dignissimos exercitationem!</p>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<div class="fact-item">
-					<h3 class="counter">30</h3>
-					<p>Unique Classes</p>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="fact-item">
-					<h3 class="counter">153</h3>
-					<p>Epic Bosses</p>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="fact-item">
-					<h3 class="counter">21</h3>
-					<p>Castles</p>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="fact-item">
-					<h3 class="counter">946</h3>
-					<p>Happy Gamers</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- facts area end -->
-<!-- feature blog area start -->
-<section class="feature-blog bg-grayblack ptb--100" id="blog">
-	<div class="container">
-		<div class="gm-title">
-			<span>Read</span>
-			<h2>Our Letest News</h2>
-		</div>
-		<div class="row">
-			<div class="col-lg-4 col-md-6">
-				<div class="single-blog">
-					<div class="blog-content">
-						<h2>
-							<a href="blog.html">Everyday it provides me with exactly what I need</a>
-						</h2>
-						<span>June 18, 2017</span>
-					</div>
-					<div class="blog-thumb">
-						<img src="assets/images/blog/game-blog/game-blog-img1.jpg" alt="">
-						<a href="blog.html" class="read-more">Read More
-							<i class="fa fa-long-arrow-right"></i>
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="single-blog">
-					<div class="blog-content">
-						<h2>
-							<a href="blog.html">Everyday it provides me with exactly what I need</a>
-						</h2>
-						<span>June 18, 2017</span>
-					</div>
-					<div class="blog-thumb">
-						<img src="assets/images/blog/game-blog/game-blog-img2.jpg" alt="">
-						<a href="blog.html" class="read-more">Read More
-							<i class="fa fa-long-arrow-right"></i>
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="single-blog">
-					<div class="blog-content">
-						<h2>
-							<a href="blog.html">Everyday it provides me with exactly what I need</a>
-						</h2>
-						<span>June 18, 2017</span>
-					</div>
-					<div class="blog-thumb">
-						<img src="assets/images/blog/game-blog/game-blog-img3.jpg" alt="">
-						<a href="blog.html" class="read-more">Read More
-							<i class="fa fa-long-arrow-right"></i>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- feature blog area end -->
-<!-- pricing area start -->
-<section class="pricing-area bg-black ptb--100" id="price">
-	<div class="container">
-		<div class="gm-title">
-			<span>Our</span>
-			<h2>Pricing Plan</h2>
-		</div>
-		<div class="row">
-			<div class="col-lg-4 col-md-6">
-				<div class="prc-single">
-					<h2>Basic</h2>
-					<strong>
-						<sup>$</sup>33
-						<sub>/ Mon</sub>
-					</strong>
-					<ul class="prc-list">
-						<li>100mb Disk Space</li>
-						<li>2 Subdomains</li>
-						<li>5 Email Accounts</li>
-						<li>Webmail Support</li>
-					</ul>
-					<a href="#">purchase</a>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="prc-single">
-					<h2>Standard</h2>
-					<strong>
-						<sup>$</sup>66
-						<sub>/ Mon</sub>
-					</strong>
-					<ul class="prc-list">
-						<li>500mb Disk Space</li>
-						<li>10 Subdomains</li>
-						<li>20 Email Accounts</li>
-						<li>Webmail Support</li>
-					</ul>
-					<a class="active" href="#">purchase</a>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="prc-single">
-					<h2>Premium</h2>
-					<strong>
-						<sup>$</sup>99
-						<sub>/ Mon</sub>
-					</strong>
-					<ul class="prc-list">
-						<li>1000mb Disk Space</li>
-						<li>50 Subdomains</li>
-						<li>100 Email Accounts</li>
-						<li>Webmail Support</li>
-					</ul>
-					<a href="#">purchase</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- pricing area end -->
-<!-- footer area start -->
-<div class="footer-area ptb--50">
-	<div class="container">
-		<div class="footer-content">
-			<p>Copyright &copy; 2018.Company name All rights reserved.</p>
-		</div>
-	</div>
-</div>
-<!-- footer area end -->
 
-<!-- jquery latest version -->
-<script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
-<!-- bootstrap 4 js -->
-<script src="assets/js/bootstrap.min.js"></script>
-<!-- others plugins -->
-<script src="assets/js/jquery.slicknav.min.js"></script>
-<script src="assets/js/counterup.min.js"></script>
-<script src="assets/js/waypoints.js"></script>
-<script src="assets/js/imagesloaded.pkgd.min.js"></script>
-<script src="assets/js/isotope.pkgd.min.js"></script>
-<script src="assets/js/jquery.magnific-popup.min.js"></script>
-<script src="assets/js/countdown.js"></script>
-<script src="assets/js/swiper.min.js"></script>
-<script src="assets/js/plugins.js"></script>
-<script src="assets/js/jquery.zoomslider.min.js"></script>
-<script src="assets/js/jquery.firefly.js"></script>
-<!-- google map -->
-<!---<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBO_5h890WNShs_YLGivCBfs2U89qXR-7Y&callback=initMap"></script>--->
-<script src="assets/js/scripts.js"></script>
+<main>
+
+  <!-- ============================ HERO ============================ -->
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-[1400px] grid grid-cols-1 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] gap-12 px-6 md:px-10 pt-28 pb-20 lg:pt-36 lg:pb-24">
+      <!-- LEFT -->
+      <div class="flex flex-col gap-8">
+        <div class="flex items-center gap-3">
+          <span class="block w-8 h-px bg-jade-300"></span>
+          <span class="font-mono text-[11px] tracking-[0.14em] text-jade-300">S2 测试服 · 第 7 卷 · 万象归墟</span>
+        </div>
+
+        <div>
+          <h1 class="font-serif font-medium text-fog-100 leading-[0.95] tracking-tight text-[68px] md:text-[88px]">修仙地牢传说</h1>
+          <p class="mt-2 font-dispEn text-fog-400 text-[18px] md:text-[22px] tracking-tight">Xiuxian Dungeon Legend · 三人小队的副本竞速</p>
+        </div>
+
+        <p class="max-w-[560px] text-[16px] leading-relaxed text-fog-300/95">
+          在被封印的九重星海之间，三千宗门彼此倾轧。一场由玩家亲手书写的修真编年——<br class="hidden md:inline">公正不偏的战斗、跨地图协作、动态因果系统。
+        </p>
+
+        <div class="flex flex-wrap gap-3">
+          <a href="#countdown" class="press inline-flex items-center gap-2 rounded-lg bg-fog-100 text-ink-900 px-5 py-[14px] text-[14px] font-semibold transition hover:bg-white">
+            领取启灵令 <i class="ph ph-arrow-right text-[14px]"></i>
+          </a>
+          <a href="#features" class="press inline-flex items-center gap-2 rounded-lg bg-ink-900 text-fog-100 border border-ink-400 px-5 py-[14px] text-[14px] font-medium transition hover:border-fog-400">
+            <i class="ph ph-play-circle text-[14px]"></i> 观看实机
+          </a>
+        </div>
+
+        <div class="flex flex-wrap gap-12 pt-10">
+          <div>
+            <div class="font-sans text-[11px] tracking-wider text-fog-400">已开放地图</div>
+            <div class="mt-1 font-mono font-medium text-[18px] text-fog-100">47.2k 平方步</div>
+          </div>
+          <div>
+            <div class="font-sans text-[11px] tracking-wider text-fog-400">宗门数</div>
+            <div class="mt-1 font-mono font-medium text-[18px] text-fog-100">312</div>
+          </div>
+          <div>
+            <div class="font-sans text-[11px] tracking-wider text-fog-400">延迟中位</div>
+            <div class="mt-1 font-mono font-medium text-[18px] text-fog-100">38 ms</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="flex flex-col gap-4">
+        <div class="relative h-[480px] lg:h-[580px] rounded-3xl overflow-hidden border border-ink-500">
+          <img
+            src="images/hero.jpg"
+            alt="悬崖之上的修真者剪影，金色暮光与云海"
+            class="absolute inset-0 w-full h-full object-cover"
+          />
+          <div class="absolute inset-0 hero-fade"></div>
+          <div class="absolute left-6 top-6 inline-flex items-center gap-2 px-3 py-[6px] rounded-full bg-ink-900/70 border border-white/10 backdrop-blur">
+            <span class="block w-[6px] h-[6px] rounded-full bg-jade-300"></span>
+            <span class="font-mono text-[11px] tracking-wide text-fog-100">试玩录像 · 第 04 卷</span>
+          </div>
+          <p class="absolute left-6 right-6 bottom-6 font-serif text-fog-100/80 text-[14px] tracking-[0.1em]">——— 修仙地牢 · 第 04 卷</p>
+        </div>
+
+        <!-- two stat sub-cards -->
+        <div class="grid grid-cols-2 gap-3">
+          <div class="flex flex-col justify-between p-5 rounded-2xl bg-ink-800 border border-ink-500">
+            <div class="flex items-center justify-between">
+              <span class="font-sans text-[11px] tracking-wider text-fog-400">在线宗主</span>
+              <i class="ph ph-users text-jade-300 text-[14px]"></i>
+            </div>
+            <div class="mt-2 font-mono font-medium text-[30px] tracking-tight text-fog-100">1,247</div>
+            <div class="font-mono text-[11px] text-good">+8.4% 较昨日</div>
+          </div>
+          <div class="flex flex-col justify-between p-5 rounded-2xl bg-ink-800 border border-ink-500">
+            <div class="flex items-center justify-between">
+              <span class="font-sans text-[11px] tracking-wider text-fog-400">今日斩获</span>
+              <i class="ph ph-sword text-jade-300 text-[14px]"></i>
+            </div>
+            <div class="mt-2 font-mono font-medium text-[30px] tracking-tight text-fog-100">38,914</div>
+            <div class="font-mono text-[11px] text-fog-300">凶兽 · 截至 23:47</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ MARQUEE ============================ -->
+  <section aria-label="近况资讯" class="bg-ink-850 border-y border-ink-600 overflow-hidden">
+    <div class="relative h-16 flex items-center">
+      <div class="marquee-track flex shrink-0 gap-12 whitespace-nowrap px-10">
+        <!-- duplicated twice for seamless loop -->
+        <span class="flex items-center gap-3"><span class="font-mono text-[11px] tracking-wider text-jade-300">04·29</span><span class="text-fog-200 text-[13px]">「九叠仙阵」修复完成 · 跨服 PVP 重启</span></span>
+        <span class="block w-[3px] h-[3px] rounded-full bg-ink-400 self-center"></span>
+        <span class="flex items-center gap-3"><span class="font-mono text-[11px] tracking-wider text-jade-300">04·26</span><span class="text-fog-200 text-[13px]">新增 14 件灵宝 · 词缀系统 v2 上线</span></span>
+        <span class="block w-[3px] h-[3px] rounded-full bg-ink-400 self-center"></span>
+        <span class="flex items-center gap-3"><span class="font-mono text-[11px] tracking-wider text-jade-300">04·22</span><span class="text-fog-200 text-[13px]">灵根强化 · 新副本「悬河九境」开放</span></span>
+        <span class="block w-[3px] h-[3px] rounded-full bg-ink-400 self-center"></span>
+        <span class="flex items-center gap-3"><span class="font-mono text-[11px] tracking-wider text-jade-300">04·18</span><span class="text-fog-200 text-[13px]">新增宗门「太衍墟」· 名额 200</span></span>
+        <span class="block w-[3px] h-[3px] rounded-full bg-ink-400 self-center"></span>
+        <!-- duplicate -->
+        <span class="flex items-center gap-3" aria-hidden="true"><span class="font-mono text-[11px] tracking-wider text-jade-300">04·29</span><span class="text-fog-200 text-[13px]">「九叠仙阵」修复完成 · 跨服 PVP 重启</span></span>
+        <span class="block w-[3px] h-[3px] rounded-full bg-ink-400 self-center" aria-hidden="true"></span>
+        <span class="flex items-center gap-3" aria-hidden="true"><span class="font-mono text-[11px] tracking-wider text-jade-300">04·26</span><span class="text-fog-200 text-[13px]">新增 14 件灵宝 · 词缀系统 v2 上线</span></span>
+        <span class="block w-[3px] h-[3px] rounded-full bg-ink-400 self-center" aria-hidden="true"></span>
+        <span class="flex items-center gap-3" aria-hidden="true"><span class="font-mono text-[11px] tracking-wider text-jade-300">04·22</span><span class="text-fog-200 text-[13px]">灵根强化 · 新副本「悬河九境」开放</span></span>
+        <span class="block w-[3px] h-[3px] rounded-full bg-ink-400 self-center" aria-hidden="true"></span>
+        <span class="flex items-center gap-3" aria-hidden="true"><span class="font-mono text-[11px] tracking-wider text-jade-300">04·18</span><span class="text-fog-200 text-[13px]">新增宗门「太衍墟」· 名额 200</span></span>
+        <span class="block w-[3px] h-[3px] rounded-full bg-ink-400 self-center" aria-hidden="true"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ COUNTDOWN ============================ -->
+  <section id="countdown" class="bg-[#100d08]">
+    <div class="mx-auto max-w-[1400px] grid grid-cols-1 lg:grid-cols-[1fr_auto] items-center gap-10 px-6 md:px-10 py-16">
+      <div>
+        <div class="flex items-center gap-3">
+          <span class="block w-8 h-px bg-jade-300"></span>
+          <span class="font-mono text-[11px] tracking-[0.14em] text-jade-300">DEMO · 倒计时</span>
+        </div>
+        <h2 class="mt-4 font-serif font-medium text-fog-100 text-[36px] md:text-[42px] leading-[1.1] tracking-tight">试玩版即将开门</h2>
+        <p class="mt-3 text-fog-300 text-[14px]">首批 1000 位道友 · 离开门还有</p>
+      </div>
+
+      <div class="flex flex-col items-start lg:items-end gap-3" id="cd-root" data-target="2026-06-14T20:00:00+08:00">
+        <div class="flex items-center gap-2 sm:gap-[10px]">
+          <div class="cd-cell flex flex-col items-center w-[78px] sm:w-[120px] py-4 sm:py-5 rounded-2xl bg-[#0a0805] border border-jade-900">
+            <span data-cd="d" class="font-mono font-medium text-fog-100 leading-none tabular-nums text-[44px] sm:text-[64px] tracking-tight">45</span>
+            <span class="mt-2 font-mono text-[10px] tracking-[0.12em] text-jade-700">DAYS · 天</span>
+          </div>
+          <span class="font-mono font-light text-jade-900 text-[28px] sm:text-[44px]">:</span>
+          <div class="cd-cell flex flex-col items-center w-[78px] sm:w-[120px] py-4 sm:py-5 rounded-2xl bg-[#0a0805] border border-jade-900">
+            <span data-cd="h" class="font-mono font-medium text-fog-100 leading-none tabular-nums text-[44px] sm:text-[64px] tracking-tight">08</span>
+            <span class="mt-2 font-mono text-[10px] tracking-[0.12em] text-jade-700">HOURS · 时</span>
+          </div>
+          <span class="font-mono font-light text-jade-900 text-[28px] sm:text-[44px]">:</span>
+          <div class="cd-cell flex flex-col items-center w-[78px] sm:w-[120px] py-4 sm:py-5 rounded-2xl bg-[#0a0805] border border-jade-900">
+            <span data-cd="m" class="font-mono font-medium text-fog-100 leading-none tabular-nums text-[44px] sm:text-[64px] tracking-tight">23</span>
+            <span class="mt-2 font-mono text-[10px] tracking-[0.12em] text-jade-700">MIN · 分</span>
+          </div>
+          <span class="font-mono font-light text-jade-900 text-[28px] sm:text-[44px]">:</span>
+          <div class="cd-cell flex flex-col items-center w-[78px] sm:w-[120px] py-4 sm:py-5 rounded-2xl bg-[#0a0805] border border-jade-900">
+            <span data-cd="s" class="font-mono font-medium text-jade-300 leading-none tabular-nums text-[44px] sm:text-[64px] tracking-tight">47</span>
+            <span class="mt-2 font-mono text-[10px] tracking-[0.12em] text-jade-700">SEC · 秒</span>
+          </div>
+        </div>
+        <p class="font-mono text-[11px] tracking-wide text-fog-400">开门时间 · 2026·06·14 20:00 (UTC+8)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ FEATURES (BENTO) ============================ -->
+  <section id="features" class="bg-ink-900">
+    <div class="mx-auto max-w-[1400px] px-6 md:px-10 py-28 md:py-32 flex flex-col gap-16">
+      <header class="flex flex-col lg:flex-row gap-10 lg:items-end lg:justify-between">
+        <div>
+          <div class="flex items-center gap-3">
+            <span class="block w-8 h-px bg-jade-300"></span>
+            <span class="font-mono text-[11px] tracking-[0.14em] text-jade-300">系统 · SYSTEMS</span>
+          </div>
+          <h2 class="mt-5 font-serif font-medium text-fog-100 text-[34px] md:text-[48px] leading-[1.15] tracking-tight max-w-[760px]">
+            在百万玩家共享的星海中，每一次决断都被记录
+          </h2>
+        </div>
+        <div class="max-w-[320px]">
+          <p class="text-fog-300 text-[14px] leading-relaxed">用规则代替神秘——伤害、词缀、相遇皆可被玩家拆解、计算、复现。</p>
+          <p class="mt-3 font-mono text-[11px] tracking-wide text-fog-400">九境 · 三十六行 · 万象生</p>
+        </div>
+      </header>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+        <!-- A: Combat (3/5) -->
+        <article class="md:col-span-3 flex flex-col justify-between gap-6 p-9 rounded-3xl bg-ink-800 border border-ink-500 min-h-[380px]">
+          <div>
+            <div class="flex items-center gap-2">
+              <i class="ph ph-shield-check text-jade-300 text-[14px]"></i>
+              <span class="font-mono text-[11px] tracking-[0.14em] text-jade-300">01 / FAIR PLAY</span>
+            </div>
+            <h3 class="mt-4 font-serif font-medium text-fog-100 text-[28px] md:text-[34px] tracking-tight leading-tight">公正不偏的战斗</h3>
+            <p class="mt-3 max-w-[520px] text-fog-300 text-[14px] leading-relaxed">命中、暴击、格挡、闪避皆由可验证的规则裁定。每一次伤害你都能逆推由来。</p>
+          </div>
+          <div class="rounded-2xl bg-ink-950 border border-ink-600 p-5 font-mono text-[12px] space-y-1.5">
+            <div class="flex items-center justify-between text-fog-400 text-[11px]">
+              <span>战报 · 第 047 击</span>
+              <span class="text-good">4.7ms</span>
+            </div>
+            <div class="text-fog-100">命中 · 暴击 ×1.7 · 攻 283 ÷ 防 147</div>
+            <div class="text-fog-200">造成 487 点伤害 · 周围 18 位道友目睹</div>
+            <div class="text-good">掉落 · 灵宝「碎月匕」(稀有) 已入怀</div>
+          </div>
+        </article>
+
+        <!-- B: Causality (2/5) -->
+        <article class="md:col-span-2 flex flex-col justify-between gap-6 p-9 rounded-3xl bg-ink-800 border border-ink-500 min-h-[380px]">
+          <div class="relative h-[160px] rounded-2xl overflow-hidden bg-ink-950 border border-ink-600">
+            <img src="images/causality.jpg" alt="抽象因果等高线图" class="absolute inset-0 w-full h-full object-cover opacity-70" />
+            <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(11,11,13,0.2),rgba(11,11,13,0.85))"></div>
+          </div>
+          <div>
+            <span class="font-mono text-[11px] tracking-[0.14em] text-jade-300">02 / CAUSALITY</span>
+            <h3 class="mt-3 font-serif font-medium text-fog-100 text-[24px] md:text-[28px] tracking-tight">动态因果系统</h3>
+            <p class="mt-3 text-fog-300 text-[13px] leading-relaxed">NPC 记忆每位玩家的善恶选择。一次背叛可能在 47 天后引来杀机。</p>
+          </div>
+        </article>
+
+        <!-- C: Sects (1/3 of row 2) -->
+        <article class="md:col-span-2 flex flex-col justify-between gap-5 p-7 rounded-3xl bg-ink-800 border border-ink-500 min-h-[300px]">
+          <div class="flex">
+            <span class="block w-9 h-9 rounded-full ring-2 ring-ink-800 bg-[#3a4a5d]"></span>
+            <span class="block w-9 h-9 rounded-full ring-2 ring-ink-800 bg-[#5d3a3a] -ml-2.5"></span>
+            <span class="block w-9 h-9 rounded-full ring-2 ring-ink-800 bg-[#3a5d4d] -ml-2.5"></span>
+            <span class="block w-9 h-9 rounded-full ring-2 ring-ink-800 bg-[#5d4d3a] -ml-2.5"></span>
+            <span class="grid place-items-center w-9 h-9 rounded-full ring-2 ring-ink-800 bg-ink-600 -ml-2.5 font-mono text-[9px] text-jade-300">+308</span>
+          </div>
+          <div>
+            <span class="font-mono text-[11px] tracking-[0.14em] text-jade-300">03 / SECTS</span>
+            <h3 class="mt-2 font-serif font-medium text-fog-100 text-[22px] md:text-[24px] tracking-tight">312 个宗门</h3>
+            <p class="mt-2 text-fog-300 text-[13px] leading-relaxed">加入、缔盟，或彻底覆灭。</p>
+          </div>
+        </article>
+
+        <!-- D: Cross-zone -->
+        <article class="md:col-span-2 flex flex-col justify-between gap-5 p-7 rounded-3xl bg-ink-800 border border-ink-500 min-h-[300px]">
+          <span class="grid place-items-center w-[42px] h-[42px] rounded-xl bg-ink-700 border border-ink-400">
+            <i class="ph ph-map-trifold text-jade-300 text-[18px]"></i>
+          </span>
+          <div>
+            <span class="font-mono text-[11px] tracking-[0.14em] text-jade-300">04 / CROSS-ZONE</span>
+            <h3 class="mt-2 font-serif font-medium text-fog-100 text-[22px] md:text-[24px] tracking-tight">无缝大世界</h3>
+            <p class="mt-2 text-fog-300 text-[13px] leading-relaxed">172 张地图实时通讯，渡劫无加载墙。</p>
+          </div>
+        </article>
+
+        <!-- E: Cultivation -->
+        <article class="md:col-span-1 flex flex-col justify-between gap-5 p-7 rounded-3xl bg-ink-800 border border-ink-500 min-h-[300px]">
+          <div class="flex items-end gap-1.5 h-[56px]">
+            <span class="block w-3 h-6 rounded-sm bg-jade-300"></span>
+            <span class="block w-3 h-8 rounded-sm bg-jade-300/80"></span>
+            <span class="block w-3 h-11 rounded-sm bg-jade-300/60"></span>
+            <span class="block w-3 h-9 rounded-sm bg-jade-300/40"></span>
+            <span class="block w-3 h-12 rounded-sm bg-jade-300/25"></span>
+            <span class="block w-3 h-4 rounded-sm bg-ink-400"></span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-jade-300 text-[11px]">金丹·下品</span>
+              <span class="font-mono text-fog-400 text-[11px]">→ 元婴</span>
+            </div>
+            <span class="mt-2 block font-mono text-[11px] tracking-[0.14em] text-jade-300">05 / CULTIVATION</span>
+            <h3 class="mt-1 font-serif font-medium text-fog-100 text-[22px] tracking-tight">九境登仙路</h3>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ WORLD ============================ -->
+  <section id="world" class="bg-ink-900">
+    <div class="mx-auto max-w-[1400px] grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-10 px-6 md:px-10 pb-28">
+      <div class="relative h-[420px] lg:h-[560px] rounded-3xl overflow-hidden border border-ink-500">
+        <img src="images/world.jpg" alt="东海·万象群岛" class="absolute inset-0 w-full h-full object-cover" />
+        <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(11,11,13,0) 50%, rgba(11,11,13,0.85) 100%)"></div>
+        <div class="absolute left-6 bottom-6 inline-flex items-center gap-2 px-3 py-[6px] rounded-full bg-ink-900/70 border border-white/10 backdrop-blur">
+          <span class="block w-[6px] h-[6px] rounded-full bg-good"></span>
+          <span class="text-fog-100 text-[12px]">东海·万象群岛</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-8 py-4">
+        <div class="flex items-center gap-3">
+          <span class="block w-8 h-px bg-jade-300"></span>
+          <span class="font-mono text-[11px] tracking-[0.14em] text-jade-300">世界 · ATLAS</span>
+        </div>
+        <h2 class="font-serif font-medium text-fog-100 text-[30px] md:text-[38px] leading-[1.2] tracking-tight">九重星海，皆是疆土</h2>
+        <p class="text-fog-300 text-[14px] leading-relaxed max-w-[520px]">
+          从北域冰封的「玄渊雪窟」到南海潮汐共生的「珊瑚墟」，每一片大陆由独立物理与生态规则支配。可徒步穿越，可御剑跨海。
+        </p>
+
+        <ul class="divide-y divide-ink-500 border-y border-ink-500">
+          <li class="flex items-center justify-between py-4">
+            <span class="font-medium text-fog-100 text-[14px]">东海·万象群岛</span>
+            <span class="font-mono text-[11px] text-good">04·30 开放</span>
+          </li>
+          <li class="flex items-center justify-between py-4">
+            <span class="font-medium text-fog-100 text-[14px]">北域·玄渊雪窟</span>
+            <span class="font-mono text-[11px] text-fog-300">04·22 开放</span>
+          </li>
+          <li class="flex items-center justify-between py-4">
+            <span class="font-medium text-fog-100 text-[14px]">南海·珊瑚墟</span>
+            <span class="font-mono text-[11px] text-jade-300">05·14 预定</span>
+          </li>
+          <li class="flex items-center justify-between py-4">
+            <span class="font-medium text-fog-400 text-[14px]">中州·苍梧古都</span>
+            <span class="font-mono text-[11px] text-fog-400">06·07 内测</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ SPONSOR ============================ -->
+  <section id="sponsor" class="bg-sponsor mesh-amber">
+    <div class="mx-auto max-w-[1400px] grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-16 px-6 md:px-10 py-32 items-start">
+      <!-- LEFT -->
+      <div class="flex flex-col gap-7">
+        <div class="flex items-center gap-3">
+          <span class="block w-8 h-px bg-jade-300"></span>
+          <span class="font-mono text-[11px] tracking-[0.14em] text-jade-300">赞助 · PATRONAGE</span>
+        </div>
+        <h2 class="font-serif font-medium text-fog-100 text-[44px] md:text-[64px] leading-[1.1] tracking-tighter">
+          饮我一杯，<br />助我千里登仙路
+        </h2>
+        <p class="max-w-[480px] text-fog-200 text-[15px] leading-[1.8]">
+          修仙地牢传说 由独立小队远程协作开发，至今 14 个月。每一笔赞赏将直接用于服务器、声音设计与原画外包。金额随心，无最低门槛——一杯咖啡的钱也是力量。
+        </p>
+
+        <div class="flex flex-col gap-5 pt-4">
+          <div class="flex gap-4 items-start">
+            <span class="grid place-items-center w-7 h-7 rounded-md bg-jade-950 ring-1 ring-jade-300/30">
+              <i class="ph ph-heart text-jade-300 text-[14px]"></i>
+            </span>
+            <div>
+              <div class="font-serif font-medium text-fog-100 text-[16px]">金额随心</div>
+              <p class="text-fog-300 text-[13px] leading-relaxed">扫码后自由填写。¥6 也好，¥666 也好——一份心意比金额重要。</p>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <span class="grid place-items-center w-7 h-7 rounded-md bg-jade-950 ring-1 ring-jade-300/30">
+              <i class="ph ph-chat-text text-jade-300 text-[14px]"></i>
+            </span>
+            <div>
+              <div class="font-serif font-medium text-fog-100 text-[16px]">留言可入彩蛋</div>
+              <p class="text-fog-300 text-[13px] leading-relaxed">备注里写下道号或 NPC 名，被采用会出现在游戏内。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT — QR Card -->
+      <div class="rounded-[28px] bg-jade-50 p-8 max-w-[460px] mx-auto lg:mx-0 lg:ml-auto" style="box-shadow: 0 30px 60px -20px rgba(200,166,103,0.18)">
+        <div class="flex items-center justify-between border-b border-seal/10 pb-4">
+          <div class="flex items-center gap-2">
+            <span class="grid place-items-center w-6 h-6 rounded-md bg-seal font-serif font-semibold text-jade-300 text-[12px]">修</span>
+            <span class="font-medium text-seal text-[13px]">修仙地牢传说 · 赞赏堂</span>
+          </div>
+          <span class="font-mono text-[10px] tracking-[0.12em] text-jade-700">NO. 047</span>
+        </div>
+
+        <!-- QR — 真实支付宝赞赏码 (烘焙为静态 PNG, ecc=H) -->
+        <div class="mt-5 bg-white rounded-2xl p-6">
+          <div class="relative w-[280px] h-[280px] mx-auto">
+            <img
+              src="images/qr-alipay.png"
+              alt="支付宝赞赏二维码"
+              width="280"
+              height="280"
+              class="block w-[280px] h-[280px] [image-rendering:pixelated]"
+            />
+            <!-- center 修 logo overlay (ecc H tolerates ~30% loss) -->
+            <div class="absolute grid place-items-center w-12 h-12 rounded-lg bg-white ring-[3px] ring-seal left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              <span class="font-serif font-semibold text-seal text-[20px]">修</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- pay -->
+        <div class="mt-5 flex items-center justify-center gap-2.5 px-4 py-3 rounded-xl bg-seal/[0.04]">
+          <i class="ph ph-qr-code text-seal text-[16px]"></i>
+          <span class="font-medium text-seal text-[13px]">支付宝 · 随意赞助</span>
+        </div>
+
+        <div class="mt-4 text-center space-y-1">
+          <p class="text-jade-700 text-[12px]">扫码识别 · 金额自由 · 随心一份心意</p>
+          <p class="font-mono text-[11px] text-jade-500">截至本月已收到 312 位道友相助 · 平均 ¥21</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ FINAL CTA ============================ -->
+  <section class="bg-ink-900 border-t border-ink-600">
+    <div class="mx-auto max-w-[1400px] grid grid-cols-1 lg:grid-cols-[1fr_auto] items-center gap-10 px-6 md:px-10 py-20">
+      <div>
+        <div class="font-mono text-[11px] tracking-[0.14em] text-jade-300">DOWNLOAD · 启灵令</div>
+        <h2 class="mt-3 font-serif font-medium text-fog-100 text-[40px] md:text-[56px] leading-[1.1] tracking-tighter">渡海而来，归墟未远</h2>
+        <p class="mt-3 font-mono text-[13px] text-fog-400">Windows · macOS · 安卓 · iOS · 14.7 GB</p>
+      </div>
+      <a href="#countdown" class="press inline-flex items-center gap-3 rounded-xl bg-fog-100 text-ink-900 px-7 py-[18px] text-[15px] font-semibold transition hover:bg-white">
+        <i class="ph ph-download-simple text-[16px]"></i> 领取启灵令
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="bg-ink-950">
+  <div class="mx-auto max-w-[1400px] grid grid-cols-1 md:grid-cols-[1.2fr_1fr_1fr_1fr] gap-10 px-6 md:px-10 pt-16 pb-10">
+    <div class="flex flex-col gap-5">
+      <div class="flex items-center gap-2.5">
+        <span class="grid place-items-center w-8 h-8 rounded-lg bg-jade-950 ring-1 ring-jade-300/40 font-serif font-semibold text-jade-300 text-[16px]">修</span>
+        <span class="font-medium text-fog-100 text-[16px]">修仙地牢传说</span>
+      </div>
+      <p class="text-fog-400 text-[13px] leading-relaxed max-w-[380px]">由 14 名远程协作的独立开发者构筑，自 2025 年 1 月起。</p>
+    </div>
+
+    <div class="flex flex-col gap-3.5">
+      <div class="font-semibold text-fog-200 text-[11px] tracking-[0.14em]">游戏</div>
+      <a class="text-fog-400 text-[13px] hover:text-fog-100 transition" href="#world">世界图志</a>
+      <a class="text-fog-400 text-[13px] hover:text-fog-100 transition" href="#features">宗门体系</a>
+      <a class="text-fog-400 text-[13px] hover:text-fog-100 transition" href="#features">修真九境</a>
+      <a class="text-fog-400 text-[13px] hover:text-fog-100 transition" href="#sponsor">赞助名册</a>
+    </div>
+
+    <div class="flex flex-col gap-3.5">
+      <div class="font-semibold text-fog-200 text-[11px] tracking-[0.14em]">工作室</div>
+      <a class="text-fog-400 text-[13px] hover:text-fog-100 transition" href="#">开发周记</a>
+      <a class="text-fog-400 text-[13px] hover:text-fog-100 transition" href="#">招募</a>
+      <a class="text-fog-400 text-[13px] hover:text-fog-100 transition" href="#">GitHub</a>
+      <a class="text-fog-400 text-[13px] hover:text-fog-100 transition" href="#">Discord 道盟</a>
+    </div>
+
+    <div class="flex flex-col gap-3.5">
+      <div class="font-semibold text-fog-200 text-[11px] tracking-[0.14em]">联络</div>
+      <a class="font-mono text-fog-400 text-[13px] hover:text-fog-100 transition" href="mailto:hi@xiuxian.run">hi@xiuxian.run</a>
+      <a class="text-fog-400 text-[13px] hover:text-fog-100 transition" href="#">问题反馈</a>
+      <a class="text-fog-400 text-[13px] hover:text-fog-100 transition" href="#">用户协议</a>
+      <a class="text-fog-400 text-[13px] hover:text-fog-100 transition" href="#">隐私</a>
+    </div>
+  </div>
+
+  <div class="border-t border-ink-600">
+    <div class="mx-auto max-w-[1400px] px-6 md:px-10 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+      <p class="text-fog-500 text-[11px]">© 2025–2026 修仙地牢传说 · 沪 ICP 备 24008143 号 · 测试服仅供内部体验</p>
+      <p class="font-mono text-fog-500 text-[11px]">build · ce04.7 · <span id="build-date"></span></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // -------- Countdown --------
+  (function () {
+    const root = document.getElementById("cd-root");
+    if (!root) return;
+    const target = new Date(root.dataset.target).getTime();
+    const cells = {
+      d: root.querySelector('[data-cd="d"]'),
+      h: root.querySelector('[data-cd="h"]'),
+      m: root.querySelector('[data-cd="m"]'),
+      s: root.querySelector('[data-cd="s"]'),
+    };
+    const pad = (n) => String(Math.max(0, n)).padStart(2, "0");
+
+    function tick() {
+      const now = Date.now();
+      let diff = Math.max(0, target - now) / 1000;
+      const d = Math.floor(diff / 86400); diff -= d * 86400;
+      const h = Math.floor(diff / 3600);  diff -= h * 3600;
+      const m = Math.floor(diff / 60);    diff -= m * 60;
+      const s = Math.floor(diff);
+      cells.d.textContent = pad(d);
+      cells.h.textContent = pad(h);
+      cells.m.textContent = pad(m);
+      cells.s.textContent = pad(s);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  // -------- Build date --------
+  (function () {
+    const el = document.getElementById("build-date");
+    if (!el) return;
+    const d = new Date();
+    el.textContent = `${d.getFullYear()}·${String(d.getMonth() + 1).padStart(2, "0")}·${String(d.getDate()).padStart(2, "0")}`;
+  })();
+
+  // -------- Smooth nav scroll offset for sticky header --------
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const id = a.getAttribute("href");
+      if (id === "#" || id.length < 2) return;
+      const t = document.querySelector(id);
+      if (!t) return;
+      e.preventDefault();
+      const y = t.getBoundingClientRect().top + window.scrollY - 64;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    });
+  });
+</script>
+
 </body>
-
 </html>
