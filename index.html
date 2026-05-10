@@ -430,7 +430,19 @@
 
       <!-- Timeline -->
       <ol class="flex flex-col">
-        <!-- entry 1 -->
+        <!-- entry: AI · TERRAIN -->
+        <li class="flex flex-col md:flex-row gap-3 md:gap-12 py-7 border-t border-ink-400">
+          <div class="md:w-40 shrink-0 flex md:flex-col items-baseline md:items-start gap-3 md:gap-1.5">
+            <span class="font-mono text-[14px] font-medium text-fog-100 tracking-wide">2026·05·10</span>
+            <span class="font-mono text-[10px] tracking-[0.14em] text-jade-300">AI · TERRAIN</span>
+          </div>
+          <div class="flex flex-col gap-2.5 flex-1">
+            <h3 class="font-serif text-2xl text-fog-100 leading-tight tracking-tight">怪物寻路全面重构 · 地形精度还原</h3>
+            <p class="text-[14px] text-fog-300 leading-[1.7]">穿越传送门后仍能精准追击、墙角自动绕行、被攻击坚定锁仇直至击杀；地图行走数据按设计师手稿一比一还原，可走区域翻倍，告别站桩挨打与寻路死锁。</p>
+          </div>
+        </li>
+
+        <!-- entry: RANGED · COMBAT -->
         <li class="flex flex-col md:flex-row gap-3 md:gap-12 py-7 border-t border-ink-400">
           <div class="md:w-40 shrink-0 flex md:flex-col items-baseline md:items-start gap-3 md:gap-1.5">
             <span class="font-mono text-[14px] font-medium text-fog-100 tracking-wide">2026·05·10</span>
@@ -438,7 +450,7 @@
           </div>
           <div class="flex flex-col gap-2.5 flex-1">
             <h3 class="font-serif text-2xl text-fog-100 leading-tight tracking-tight">远程武器系统 · 弓箭弹道</h3>
-            <p class="text-[14px] text-fog-300 leading-[1.7]">弓 (kind 9) 接入：左手挂载 + 独立旋转、攻击距离扩至 10 米（服务端同步放宽校验）；箭矢从弓位发射、追踪目标、按模型轴向自动校正朝向。</p>
+            <p class="text-[14px] text-fog-300 leading-[1.7]">弓接入：左手持弓姿势、独立旋转校准；攻击距离 8 米触发，箭矢从弓位发出追踪目标，飞行中目标移动也能命中；模型轴向自动校正，飞行姿态稳定。</p>
           </div>
         </li>
 
@@ -462,7 +474,7 @@
           </div>
           <div class="flex flex-col gap-2.5 flex-1">
             <h3 class="font-serif text-2xl text-fog-100 leading-tight tracking-tight">四类资源体系完整复刻</h3>
-            <p class="text-[14px] text-fog-300 leading-[1.7]">动画 · 音效 · 元素法阵全打通：6 种属性吟唱阵、抛物线击倒、男女语音独立资产、女性动画自动并入 AnimationLibrary。</p>
+            <p class="text-[14px] text-fog-300 leading-[1.7]">动画 · 音效 · 元素法阵全打通：6 种属性吟唱阵、抛物线击倒、男女语音独立资产、女性动画自动并入共享动画库。</p>
           </div>
         </li>
 
